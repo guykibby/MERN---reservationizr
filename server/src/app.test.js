@@ -26,36 +26,36 @@ const restaurants = [
 ];
 
 describe("app", () => {
-  it("should GET /restaurants returns all restaurants", async () => {
+  it("GET /restaurants should return all restaurants", async () => {
     const response = await request(app).get("/restaurants");
     expect(response.body).toEqual(restaurants);
     expect(response.status).toEqual(200);
   });
-  //   it("should GET /reservations/507f1f77bcf86cd799439011 return single reservation ", async () => {
-  //     const response = await request(app).get(
-  //       "/reservations/507f1f77bcf86cd799439011"
-  //     );
-  //     expect(response.body).toEqual(reservations[0]);
+  it("should GET /restaurants/616005cae3c8e880c13dc0b9 return single restaurant", async () => {
+    const response = await request(app).get(
+      "/restaurants/616005cae3c8e880c13dc0b9"
+    );
+    expect(response.body).toEqual(restaurants[0]);
 
-  //     expect(response.status).toEqual(200);
-  //   });
+    expect(response.status).toEqual(200);
+  });
 
-  //   it("should GET /reservations/614abf0a93ee792ac6 return error ID invalid", async () => {
-  //     const response = await request(app).get("/reservations/614abf0a93ee792ac6");
-  //     expect(response.body).toEqual({
-  //       message: "id provided is invalid",
-  //     });
+  it("GET /restaurants/616005cae3c8e8dc0b1 should return error ID invalid message", async () => {
+    const response = await request(app).get("/restaurants/616005cae3c8e8dc0b1");
+    expect(response.body).toEqual({
+      message: "Invalid ID is provided",
+    });
 
-  //     expect(response.status).toEqual(400);
-  //   });
-  //   it("should GET /reservations/614abf0a93e8e80ace792a77 return error ID not found", async () => {
-  //     const response = await request(app).get(
-  //       "/reservations/614abf0a93e8e80ace792a77"
-  //     );
-  //     expect(response.body).toEqual({
-  //       message: "id not found",
-  //     });
+    expect(response.status).toEqual(400);
+  });
+  it("GET /restaurants/616005cae3c8e880c13dc0b1 should return error ID not found", async () => {
+    const response = await request(app).get(
+      "/restaurants/616005cae3c8e880c13dc0b1"
+    );
+    expect(response.body).toEqual({
+      message: "The restaurant trying to be retrieved does not exist",
+    });
 
-  //     expect(response.status).toEqual(404);
-  //   });
+    expect(response.status).toEqual(404);
+  });
 });
