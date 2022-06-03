@@ -6,11 +6,15 @@ body {
 }
 
 .container {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
-img {
+.img1 {
   max-width: 100%;
   height: auto;
+  align-self: start;
 }
 
 h1 {

@@ -9,8 +9,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/restaurants", async (req, res) => {
-  const restaurants = await RestaurantModel.find({});
-  return res.status(200).send(restaurants.map(formatRestaurant));
+  try {
+    const restaurants = await RestaurantModel.find({});
+    return res.status(200).send(restaurants.map(formatRestaurant));
+  } catch (e) {
+    next(e);
+  }
 });
 
 module.exports = app;

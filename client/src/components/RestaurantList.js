@@ -31,8 +31,12 @@ const RestaurantList = () => {
         {restaurants.map((restaurant) => {
           return (
             <li className="restaurantItem" key={restaurant.id}>
-              <img src={restaurant.image} alt={restaurant.name} />
-              <div>
+              <img
+                className="img1"
+                src={restaurant.image}
+                alt={restaurant.name}
+              />
+              <div className="restaurantItemDiv">
                 <h2 className="restaurantName">{restaurant.name}</h2>
                 <p className="restaurantDescription">
                   {restaurant.description}

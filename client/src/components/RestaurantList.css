@@ -24,11 +24,24 @@
 }
 
 .restaurantlink {
-  background: rgb(218, 3, 3);
+  background: rgb(215, 19, 19);
   border-radius: 5px;
   display: inline-block;
   color: rgb(255, 255, 255);
   padding: 0.5rem 1rem;
   margin: 1rem 0 0 0;
   text-decoration: none;
+}
+
+@media only screen and (min-width: 40rem) {
+  .restaurantList {
+    max-width: 38rem;
+  }
+
+  .restaurantItem {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 2rem;
+  }
 }
