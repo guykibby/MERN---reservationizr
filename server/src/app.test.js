@@ -31,7 +31,7 @@ describe("app", () => {
     expect(response.body).toEqual(restaurants);
     expect(response.status).toEqual(200);
   });
-  it("should GET /restaurants/616005cae3c8e880c13dc0b9 return single restaurant", async () => {
+  it("GET /restaurants/616005cae3c8e880c13dc0b9 should return single restaurant", async () => {
     const response = await request(app).get(
       "/restaurants/616005cae3c8e880c13dc0b9"
     );
@@ -40,20 +40,20 @@ describe("app", () => {
     expect(response.status).toEqual(200);
   });
 
-  it("GET /restaurants/616005cae3c8e8dc0b1 should return error ID invalid message", async () => {
+  it("GET /restaurants/616005cae3c8e8dc0b1 should return invalid ID error", async () => {
     const response = await request(app).get("/restaurants/616005cae3c8e8dc0b1");
     expect(response.body).toEqual({
-      message: "Invalid ID is provided",
+      error: "invalid id provided",
     });
 
     expect(response.status).toEqual(400);
   });
-  it("GET /restaurants/616005cae3c8e880c13dc0b1 should return error ID not found", async () => {
+  it("GET /restaurants/616005cae3c8e880c13dc0b1 should return ID not found error", async () => {
     const response = await request(app).get(
       "/restaurants/616005cae3c8e880c13dc0b1"
     );
     expect(response.body).toEqual({
-      message: "The restaurant trying to be retrieved does not exist",
+      error: "restaurant not found",
     });
 
     expect(response.status).toEqual(404);

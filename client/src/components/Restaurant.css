@@ -1,0 +1,35 @@
+/* .restaurantList {
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr;
+    
+    
+    padding: 0 1rem;
+    grid-gap: 3rem;
+  }
+   */
+.restaurantItem2 {
+  max-width: 24rem;
+  margin: 0 auto;
+  list-style: none;
+  padding: 1rem;
+}
+
+.restaurantName2 {
+  font-weight: bold;
+  margin: 0.2rem 0;
+}
+
+.restaurantDescription2 {
+  margin: 0.3rem 0;
+}
+
+@media only screen and (min-width: 40rem) {
+  .restaurantItem2 {
+    max-width: 40rem;
+    display: grid;
+    place-items: center;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 2rem;
+  }
+}

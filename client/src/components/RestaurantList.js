@@ -30,15 +30,15 @@ const RestaurantList = () => {
       <ul className="restaurantList">
         {restaurants.map((restaurant) => {
           return (
-            <li className="restaurantItem" key={restaurant.id}>
+            <li className="restaurantItem1" key={restaurant.id}>
               <img
                 className="img1"
                 src={restaurant.image}
                 alt={restaurant.name}
               />
-              <div className="restaurantItemDiv">
-                <h2 className="restaurantName">{restaurant.name}</h2>
-                <p className="restaurantDescription">
+              <div>
+                <h2 className="restaurantName1">{restaurant.name}</h2>
+                <p className="restaurantDescription1">
                   {restaurant.description}
                 </p>
                 <Link

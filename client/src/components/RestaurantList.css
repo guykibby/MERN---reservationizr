@@ -8,18 +8,18 @@
   grid-gap: 3rem;
 }
 
-.restaurantItem {
+.restaurantItem1 {
   list-style: none;
   padding: 1rem;
   box-shadow: rgba(22, 22, 23, 0.2) 0px 7px 29px 0px;
 }
 
-.restaurantName {
+.restaurantName1 {
   font-weight: bold;
   margin: 0.2rem 0;
 }
 
-.restaurantDescription {
+.restaurantDescription1 {
   margin: 0.3rem 0;
 }
 
@@ -35,10 +35,10 @@
 
 @media only screen and (min-width: 40rem) {
   .restaurantList {
-    max-width: 38rem;
+    max-width: 40rem;
   }
 
-  .restaurantItem {
+  .restaurantItem1 {
     display: grid;
     place-items: center;
     grid-template-columns: 1fr 2fr;

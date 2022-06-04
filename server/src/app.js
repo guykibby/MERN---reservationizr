@@ -10,12 +10,12 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/restaurants", async (req, res, next) => {
-  try {
-    const restaurants = await RestaurantModel.find({});
-    return res.status(200).send(restaurants.map(formatRestaurant));
-  } catch (e) {
-    next(e);
-  }
+  //   try {
+  const restaurants = await RestaurantModel.find({});
+  return res.status(200).send(restaurants.map(formatRestaurant));
+  //   } catch (e) {
+  //     next(e);
+  //   }
 });
 
 app.get("/restaurants/:id", async (request, response) => {
@@ -28,11 +28,11 @@ app.get("/restaurants/:id", async (request, response) => {
       return response.send(formatRestaurant(restaurant));
     } else {
       return response.status(404).send({
-        message: "The restaurant trying to be retrieved does not exist",
+        error: "restaurant not found",
       });
     }
   } else {
-    return response.status(400).send({ message: "Invalid ID is provided" });
+    return response.status(400).send({ error: "invalid id provided" });
   }
 });
 
