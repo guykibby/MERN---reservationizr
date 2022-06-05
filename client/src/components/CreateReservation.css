@@ -1,0 +1,9 @@
+.reservationForm {
+  display: grid;
+}
+
+.inputArea {
+  border-style: solid;
+  border-color: rgb(239, 239, 239);
+  width: 100%;
+}

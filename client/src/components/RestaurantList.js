@@ -41,10 +41,7 @@ const RestaurantList = () => {
                 <p className="restaurantDescription1">
                   {restaurant.description}
                 </p>
-                <Link
-                  className="restaurantlink"
-                  to={`/restaurants/${restaurant.id}`}
-                >
+                <Link className="btn1" to={`/restaurants/${restaurant.id}`}>
                   Reserve now &rarr;
                 </Link>
               </div>

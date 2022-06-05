@@ -1,23 +1,13 @@
-/* .restaurantList {
-    display: grid;
-    place-items: center;
-    grid-template-columns: 1fr;
-    
-    
-    padding: 0 1rem;
-    grid-gap: 3rem;
-  }
-   */
 .restaurantItem2 {
   max-width: 24rem;
   margin: 0 auto;
-  list-style: none;
   padding: 1rem;
 }
 
 .restaurantName2 {
+  text-align: center;
   font-weight: bold;
-  margin: 0.2rem 0;
+  margin: 0;
 }
 
 .restaurantDescription2 {
@@ -29,7 +19,10 @@
     max-width: 40rem;
     display: grid;
     place-items: center;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 1.1fr 2fr;
     grid-gap: 2rem;
+  }
+  .restaurantName2 {
+    text-align: left;
   }
 }

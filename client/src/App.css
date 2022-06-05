@@ -22,3 +22,14 @@ h1 {
   text-align: center;
   margin-bottom: 2rem;
 }
+
+.btn1 {
+  background: rgb(215, 19, 19);
+  border-radius: 5px;
+  display: inline-block;
+  color: rgb(255, 255, 255);
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  border-style: none;
+}
