@@ -1,28 +1,29 @@
 .restaurantItem2 {
   max-width: 24rem;
   margin: 0 auto;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 .restaurantName2 {
   text-align: center;
   font-weight: bold;
-  margin: 0;
+  margin: 0.8rem;
 }
 
 .restaurantDescription2 {
-  margin: 0.3rem 0;
+  margin: 0;
 }
 
 @media only screen and (min-width: 40rem) {
   .restaurantItem2 {
-    max-width: 40rem;
+    max-width: 41rem;
     display: grid;
-    place-items: center;
-    grid-template-columns: 1.1fr 2fr;
+    place-items: start;
+    grid-template-columns: 1.3fr 2fr;
     grid-gap: 2rem;
   }
   .restaurantName2 {
     text-align: left;
+    margin: 0;
   }
 }

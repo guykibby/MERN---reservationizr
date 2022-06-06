@@ -11,9 +11,9 @@ const CreateReservation = ({ restaurantName }) => {
 
   const handleSubmit = () => {};
   return (
-    <>
+    <div className="restaurantItem2">
       <form onSubmit={handleSubmit} className="reservationForm">
-        <h3>{`Reserve ${restaurantName}`}</h3>
+        <h2>{`Reserve ${restaurantName}`}</h2>
         <label htmlFor="guestNumber">Number of guests</label>
         <input
           type="number"
@@ -40,7 +40,7 @@ const CreateReservation = ({ restaurantName }) => {
           Submit
         </button>
       </form>
-    </>
+    </div>
   );
 };
 

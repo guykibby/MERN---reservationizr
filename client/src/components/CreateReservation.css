@@ -1,9 +1,12 @@
 .reservationForm {
   display: grid;
+  margin-bottom: 1rem;
 }
 
 .inputArea {
   border-style: solid;
   border-color: rgb(239, 239, 239);
   width: 100%;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
 }

@@ -28,11 +28,11 @@ const Restaurant = () => {
       <section className="restaurantItem2" key={restaurant.id}>
         <img className="img1" src={restaurant.image} alt={restaurant.name} />
         <div>
-          <h2 className="restaurantName2">{restaurant.name}</h2>
+          <h1 className="restaurantName2">{restaurant.name}</h1>
           <p className="restaurantDescription2">{restaurant.description}</p>
         </div>
-        <CreateReservation restaurantName={restaurant.name} />
       </section>
+      <CreateReservation restaurantName={restaurant.name} />
     </>
   );
 };
