@@ -9,7 +9,33 @@ const CreateReservation = ({ restaurantName }) => {
   const [guestNumber, setGuestNumber] = useState(2);
   const [startDate, setStartDate] = useState(new Date());
 
-  const handleSubmit = () => {};
+  const navigate = useNavigate();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const newReservation = {
+      restaurantName,
+      partySize: Number(guestNumber),
+      date: startDate,
+    };
+    console.log(JSON.stringify(newReservation));
+
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/reservations`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(newReservation),
+      }
+    );
+    if (response.ok) {
+      navigate("/reservations");
+    }
+  };
   return (
     <div className="restaurantItem2">
       <form onSubmit={handleSubmit} className="reservationForm">

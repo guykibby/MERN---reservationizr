@@ -3,6 +3,7 @@ const cors = require("cors");
 const RestaurantModel = require("./models/RestaurantModel");
 const formatRestaurant = require("./utils/formatRestaurant");
 const mongoose = require("mongoose");
+const { celebrate, Joi, errors, Segments } = require("celebrate");
 
 const app = express();
 
@@ -35,5 +36,35 @@ app.get("/restaurants/:id", async (request, response) => {
     return response.status(400).send({ error: "invalid id provided" });
   }
 });
+
+app.post(
+  "/reservations",
+  // checkJwt,
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      restaurantName: Joi.string().required(),
+      partySize: Joi.number().min(1).required(),
+      date: Joi.date().required().greater("now"),
+    }),
+  }),
+  async (req, res) => {
+    // try {
+    //   const { body, auth } = req;
+    //   const document = {
+    //     createdBy: auth.payload.sub,
+    //     ...body,
+    //   };
+    //   const property = new PropertyModel(document);
+    //   await property.save();
+    //   return res.status(201).send(formatProperty(property));
+    // } catch (error) {
+    //   error.status = 400;
+    //   next(error);
+    // }
+    return res.status(201).send({});
+  }
+);
+
+app.use(errors());
 
 module.exports = app;
