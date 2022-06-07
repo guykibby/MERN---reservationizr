@@ -58,10 +58,8 @@ app.post(
   async (req, res, next) => {
     try {
       const { body } = req;
-      //   const document = {
-      //     createdBy: req.auth.payload.sub,
-      //     ...body,
-      //   };
+      body.userId = req.auth.payload.sub;
+
       const newReservation = await ReservationModel.create(body);
 
       return res.status(201).send(formatReservation(newReservation));

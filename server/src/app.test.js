@@ -73,7 +73,7 @@ describe("app", () => {
       .expect((response) => {
         expect(response.body).toEqual(expect.objectContaining(body));
         expect(response.body.id).toBeTruthy();
-        expect(response.body.userID).toBeTruthy();
+        expect(response.body.userId).toBeTruthy();
       });
   });
   test("POST /reservations returns status 400 when empty object is provided", async () => {
