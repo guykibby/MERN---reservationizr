@@ -1,7 +1,7 @@
 const formatRestaurant = require("./formatRestaurant");
 
 describe("formatRestaurant", () => {
-  it("should return object with altered id property", () => {
+  it("should return restaurant object with altered id property", () => {
     const testObject = {
       _id: "616005cae3c8e880c13dc0b9",
       name: "Curry Place",

@@ -76,10 +76,36 @@ describe("app", () => {
         // expect(response.body.userID).toBeTruthy();
       });
   });
-  test("POST /reservations returns a 400 when an invalid request body is provided", async () => {
+  test("POST /reservations returns status 400 when empty object is provided", async () => {
+    const expectedStatus = 400;
+    const body = {};
+
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+  test("POST /reservations returns status 400 when an invalid date is provided", async () => {
     const expectedStatus = 400;
     const body = {
       partySize: 5,
+      date: "2020-06-29T00:00:00.000Z",
+      restaurantName: "Island Grill",
+    };
+
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+  test("POST /reservations returns status 400 when empty property string is provided", async () => {
+    const expectedStatus = 400;
+    const body = {
+      partySize: 5,
+      date: "2020-06-29T00:00:00.000Z",
+      restaurantName: "",
+    };
+
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+  test("POST /reservations returns status 400 when partySize < 1 provided", async () => {
+    const expectedStatus = 400;
+    const body = {
+      partySize: 0,
       date: "2020-06-29T00:00:00.000Z",
       restaurantName: "Island Grill",
     };
