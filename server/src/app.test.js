@@ -58,4 +58,32 @@ describe("app", () => {
 
     expect(response.status).toEqual(404);
   });
+  test("POST /reservations creates a new reservation", async () => {
+    const expectedStatus = 201;
+    const body = {
+      partySize: 5,
+      date: "2029-06-29T00:00:00.000Z",
+      restaurantName: "Island Grill",
+    };
+
+    await request(app)
+      .post("/reservations")
+      .send(body)
+      .expect(expectedStatus)
+      .expect((response) => {
+        expect(response.body).toEqual(expect.objectContaining(body));
+        expect(response.body.id).toBeTruthy();
+        // expect(response.body.userID).toBeTruthy();
+      });
+  });
+  test("POST /reservations returns a 400 when an invalid request body is provided", async () => {
+    const expectedStatus = 400;
+    const body = {
+      partySize: 5,
+      date: "2020-06-29T00:00:00.000Z",
+      restaurantName: "Island Grill",
+    };
+
+    await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
 });

@@ -1,7 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const RestaurantModel = require("./models/RestaurantModel");
+const ReservationModel = require("./models/ReservationModel");
 const formatRestaurant = require("./utils/formatRestaurant");
+const formatReservation = require("./utils/formatReservation");
 const mongoose = require("mongoose");
 const { celebrate, Joi, errors, Segments } = require("celebrate");
 
@@ -47,20 +49,19 @@ app.post(
       date: Joi.date().required().greater("now"),
     }),
   }),
-  async (req, res) => {
-    // try {
-    //   const { body, auth } = req;
-    //   const document = {
-    //     createdBy: auth.payload.sub,
-    //     ...body,
-    //   };
-    //   const property = new PropertyModel(document);
-    //   await property.save();
-    //   return res.status(201).send(formatProperty(property));
-    // } catch (error) {
-    //   error.status = 400;
-    //   next(error);
-    // }
+  async (req, res, next) => {
+    try {
+      const { body } = req;
+      //   const document = {
+      //     createdBy: req.auth.payload.sub,
+      //     ...body,
+      //   };
+      const newReservation = await ReservationModel.create(body);
+
+      return res.status(201).send(formatReservation(newReservation));
+    } catch (error) {
+      next(error);
+    }
     return res.status(201).send({});
   }
 );
