@@ -6,8 +6,14 @@ const formatRestaurant = require("./utils/formatRestaurant");
 const formatReservation = require("./utils/formatReservation");
 const mongoose = require("mongoose");
 const { celebrate, Joi, errors, Segments } = require("celebrate");
+const { auth } = require("express-oauth2-jwt-bearer");
 
 const app = express();
+
+const checkJwt = auth({
+  audience: "https://Reservationizr/api",
+  issuerBaseURL: `https://dev-mttqdp1o.us.auth0.com/`,
+});
 
 app.use(cors());
 app.use(express.json());
@@ -41,7 +47,7 @@ app.get("/restaurants/:id", async (request, response) => {
 
 app.post(
   "/reservations",
-  // checkJwt,
+  checkJwt,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
       restaurantName: Joi.string().required().min(1),
