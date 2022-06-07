@@ -9,6 +9,8 @@ const CreateReservation = ({ restaurantName }) => {
   const [guestNumber, setGuestNumber] = useState(2);
   const [startDate, setStartDate] = useState(new Date());
 
+  const { getAccessTokenSilently } = useAuth0();
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -19,15 +21,14 @@ const CreateReservation = ({ restaurantName }) => {
       partySize: Number(guestNumber),
       date: startDate,
     };
-    console.log(JSON.stringify(newReservation));
-
+    const accessToken = await getAccessTokenSilently();
     const response = await fetch(
       `${process.env.REACT_APP_API_URL}/reservations`,
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${accessToken}`,
+          Authorization: `Bearer ${accessToken}`,
         },
         body: JSON.stringify(newReservation),
       }
