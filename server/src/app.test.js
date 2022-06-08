@@ -109,7 +109,7 @@ describe("app", () => {
 
     await request(app).post("/reservations").send(body).expect(expectedStatus);
   });
-  test("POST /reservations returns status 400 when empty property string is provided", async () => {
+  test("POST /reservations returns status 400 when empty restaurantName string is provided", async () => {
     const expectedStatus = 400;
     const body = {
       partySize: 5,
@@ -133,5 +133,32 @@ describe("app", () => {
     const response = await request(app).get("/reservations");
     expect(response.body).toEqual(reservations);
     expect(response.status).toEqual(200);
+  });
+  it("GET /reservations/507f1f77bcf86cd799439011 should return users single reservation", async () => {
+    const response = await request(app).get(
+      "/reservations/507f1f77bcf86cd799439011"
+    );
+    expect(response.body).toEqual(reservations[0]);
+
+    expect(response.status).toEqual(200);
+  });
+
+  it("GET /reservations/507f1f77bcf86cd should return error - invalid ID", async () => {
+    const response = await request(app).get("/reservations/507f1f77bcf86cd");
+    expect(response.body).toEqual({
+      error: "invalid id provided",
+    });
+
+    expect(response.status).toEqual(400);
+  });
+  it("GET /reservations/507f1f77bcf86cd799439019 should return error - not found", async () => {
+    const response = await request(app).get(
+      "/reservations/507f1f77bcf86cd799439019"
+    );
+    expect(response.body).toEqual({
+      error: "not found",
+    });
+
+    expect(response.status).toEqual(404);
   });
 });

@@ -77,6 +77,24 @@ app.get("/reservations", checkJwt, async (req, res) => {
   res.status(200).send(reservations);
 });
 
+app.get("/reservations/:id", async (request, response) => {
+  const { id } = request.params;
+  const isIdValid = mongoose.Types.ObjectId.isValid(id);
+
+  if (isIdValid) {
+    const reservation = await ReservationModel.findById(id);
+    if (reservation) {
+      return response.send(formatReservation(reservation));
+    } else {
+      return response.status(404).send({ error: "not found" });
+    }
+  } else {
+    return response.status(400).send({
+      error: "invalid id provided",
+    });
+  }
+});
+
 app.use(errors());
 
 module.exports = app;
