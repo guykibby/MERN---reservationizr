@@ -19,12 +19,8 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/restaurants", async (req, res, next) => {
-  //   try {
   const restaurants = await RestaurantModel.find({});
   return res.status(200).send(restaurants.map(formatRestaurant));
-  //   } catch (e) {
-  //     next(e);
-  //   }
 });
 
 app.get("/restaurants/:id", async (request, response) => {

@@ -14,7 +14,6 @@ const ReservationList = () => {
       const response = await fetch(
         `${process.env.REACT_APP_API_URL}/reservations`,
         {
-          // method: "GET",
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
@@ -31,8 +30,8 @@ const ReservationList = () => {
 
   return (
     <>
-      <h1>Upcoming reservations</h1>
       <ul className="reservationList">
+        <h1>Upcoming reservations</h1>
         {reservationList.map((reservation) => {
           return (
             <li key={reservation.id} className="reservationListItem">

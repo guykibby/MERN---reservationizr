@@ -1,0 +1,37 @@
+.reservationItem {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.reservationList {
+  margin: 0;
+  padding: 0;
+}
+
+.reservationListItem {
+  list-style: none;
+}
+
+.reservationUnit {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.reservationDetail {
+  margin: 0.22rem 0;
+  font-size: 0.95rem;
+}
+
+.date {
+  color: rgb(129, 129, 129);
+}
+
+.reservationBorder {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px dashed #ccc;
+}
+
+@media only screen and (min-width: 40rem) {
+}

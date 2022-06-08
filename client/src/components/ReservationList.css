@@ -1,6 +1,7 @@
 .reservationList {
-  margin: 0;
-  padding: 0;
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 
 .reservationListItem {
@@ -27,12 +28,16 @@
   border-bottom: 1px dashed #ccc;
 }
 
+.link {
+  color: #d83a38;
+}
+
 .line {
   margin: 1.1rem 0;
   border-top: 1px dashed lightgrey;
 }
 
-@media only screen and (min-width: 26rem) {
+@media only screen and (min-width: 27rem) {
   .reservationUnit {
     grid-template-columns: 1fr max-content 1fr;
   }
