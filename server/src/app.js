@@ -77,19 +77,25 @@ app.get("/reservations", checkJwt, async (req, res) => {
   res.status(200).send(reservations);
 });
 
-app.get("/reservations/:id", async (request, response) => {
-  const { id } = request.params;
+app.get("/reservations/:id", checkJwt, async (req, res) => {
+  const { id } = req.params;
   const isIdValid = mongoose.Types.ObjectId.isValid(id);
 
   if (isIdValid) {
     const reservation = await ReservationModel.findById(id);
     if (reservation) {
-      return response.send(formatReservation(reservation));
+      if (req.auth.payload.sub !== reservation.userId) {
+        return res.status(403).send({
+          error: "user does not have permission to access this reservation",
+        });
+      } else {
+        return res.send(formatReservation(reservation));
+      }
     } else {
-      return response.status(404).send({ error: "not found" });
+      return res.status(404).send({ error: "not found" });
     }
   } else {
-    return response.status(400).send({
+    return res.status(400).send({
       error: "invalid id provided",
     });
   }

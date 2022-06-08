@@ -134,7 +134,7 @@ describe("app", () => {
     expect(response.body).toEqual(reservations);
     expect(response.status).toEqual(200);
   });
-  it("GET /reservations/507f1f77bcf86cd799439011 should return users single reservation", async () => {
+  it("GET /reservations/507f1f77bcf86cd799439011 should return single reservation", async () => {
     const response = await request(app).get(
       "/reservations/507f1f77bcf86cd799439011"
     );
@@ -160,5 +160,15 @@ describe("app", () => {
     });
 
     expect(response.status).toEqual(404);
+  });
+  it("GET /reservations/61679189b54f48aa6599a7fd should return single reservation", async () => {
+    const response = await request(app).get(
+      "/reservations/61679189b54f48aa6599a7fd"
+    );
+    expect(response.body).toEqual({
+      error: "user does not have permission to access this reservation",
+    });
+
+    expect(response.status).toEqual(403);
   });
 });
