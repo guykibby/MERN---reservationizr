@@ -25,6 +25,23 @@ const restaurants = [
   },
 ];
 
+const reservations = [
+  {
+    date: "2023-11-17T06:30:00.000Z",
+    id: "507f1f77bcf86cd799439011",
+    partySize: 4,
+    restaurantName: "Island Grill",
+    userId: "mock-user-id",
+  },
+  {
+    date: "2023-12-03T07:00:00.000Z",
+    id: "614abf0a93e8e80ace792ac6",
+    partySize: 2,
+    restaurantName: "Green Curry",
+    userId: "mock-user-id",
+  },
+];
+
 describe("app", () => {
   it("GET /restaurants should return all restaurants", async () => {
     const response = await request(app).get("/restaurants");
@@ -106,10 +123,15 @@ describe("app", () => {
     const expectedStatus = 400;
     const body = {
       partySize: 0,
-      date: "2020-06-29T00:00:00.000Z",
+      date: "2025-06-29T00:00:00.000Z",
       restaurantName: "Island Grill",
     };
 
     await request(app).post("/reservations").send(body).expect(expectedStatus);
+  });
+  it("GET /reservations should return all users reservations", async () => {
+    const response = await request(app).get("/reservations");
+    expect(response.body).toEqual(reservations);
+    expect(response.status).toEqual(200);
   });
 });

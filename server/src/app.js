@@ -50,9 +50,9 @@ app.post(
   checkJwt,
   celebrate({
     [Segments.BODY]: Joi.object().keys({
-      restaurantName: Joi.string().required().min(1),
+      restaurantName: Joi.string().required(),
       partySize: Joi.number().min(1).required(),
-      date: Joi.date().required().greater("now").min(1),
+      date: Joi.date().required().greater("now"),
     }),
   }),
   async (req, res, next) => {
@@ -66,9 +66,16 @@ app.post(
     } catch (error) {
       next(error);
     }
-    return res.status(201).send({});
   }
 );
+
+app.get("/reservations", checkJwt, async (req, res) => {
+  const list = await ReservationModel.find({
+    userId: req.auth.payload.sub,
+  });
+  const reservations = list.map(formatReservation);
+  res.status(200).send(reservations);
+});
 
 app.use(errors());
 
