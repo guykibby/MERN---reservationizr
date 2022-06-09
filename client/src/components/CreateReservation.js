@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
 import "react-datepicker/dist/react-datepicker.css";
 import "./CreateReservation.css";
 
 const CreateReservation = ({ restaurantName }) => {
   const [guestNumber, setGuestNumber] = useState(2);
   const [startDate, setStartDate] = useState(new Date());
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -15,6 +18,8 @@ const CreateReservation = ({ restaurantName }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    setIsLoading(true);
 
     const newReservation = {
       restaurantName,
@@ -33,10 +38,28 @@ const CreateReservation = ({ restaurantName }) => {
         body: JSON.stringify(newReservation),
       }
     );
-    if (response.ok) {
+    if (!response.ok) {
+      setIsError(true);
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
       navigate("/reservations");
     }
   };
+
+  if (isError) {
+    return (
+      <div>
+        <p className="error restaurantItem2">
+          Error creating a reservation (Sorry)
+          <Link to="/" className="btn">
+            Return to restaurants
+          </Link>
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="restaurantItem2">
       <form onSubmit={handleSubmit} className="reservationForm">
@@ -62,8 +85,7 @@ const CreateReservation = ({ restaurantName }) => {
           id="DatePicker"
         />
 
-        <button className="btn">
-          {/* disabled={isLoading} */}
+        <button className="btn" disabled={isLoading}>
           Submit
         </button>
       </form>

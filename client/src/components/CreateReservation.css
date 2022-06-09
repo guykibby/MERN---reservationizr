@@ -16,3 +16,7 @@
   padding: 0.5rem;
   margin: 0.3rem 0;
 }
+
+.error {
+  color: red;
+}
