@@ -38,12 +38,12 @@ const Reservation = () => {
 
   if (isNotFound) {
     return (
-      <>
+      <div className="reservationItem">
         <p className="error">Sorry! We can't find that reservation</p>
-        <Link to="/" className="btn btn-center">
+        <Link to="/reservations" className="btn btn2">
           &larr; Back to reservations
         </Link>
-      </>
+      </div>
     );
   }
 
@@ -61,7 +61,7 @@ const Reservation = () => {
         <b>Party size:</b>
         <b> {reservation.partySize}</b>
       </p>
-      <Link to="/" className="btn1">
+      <Link to="/reservations" className="btn btn2">
         &larr; Back to reservations
       </Link>
     </div>

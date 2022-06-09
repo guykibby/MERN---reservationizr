@@ -62,7 +62,7 @@ const CreateReservation = ({ restaurantName }) => {
           id="DatePicker"
         />
 
-        <button className="btn1">
+        <button className="btn">
           {/* disabled={isLoading} */}
           Submit
         </button>
