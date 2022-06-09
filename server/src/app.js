@@ -68,7 +68,7 @@ app.post(
 app.get("/reservations", checkJwt, async (req, res) => {
   const list = await ReservationModel.find({
     userId: req.auth.payload.sub,
-  });
+  }).sort("date");
   const reservations = list.map(formatReservation);
   res.status(200).send(reservations);
 });
