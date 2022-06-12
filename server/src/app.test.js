@@ -43,12 +43,12 @@ const reservations = [
 ];
 
 describe("app", () => {
-  it("GET /restaurants should return all restaurants", async () => {
+  it("GET /restaurants should return status 200 and all restaurants", async () => {
     const response = await request(app).get("/restaurants");
     expect(response.body).toEqual(restaurants);
     expect(response.status).toEqual(200);
   });
-  it("GET /restaurants/616005cae3c8e880c13dc0b9 should return single restaurant", async () => {
+  it("GET /restaurants/616005cae3c8e880c13dc0b9 should return status 200 and single restaurant", async () => {
     const response = await request(app).get(
       "/restaurants/616005cae3c8e880c13dc0b9"
     );
@@ -57,7 +57,7 @@ describe("app", () => {
     expect(response.status).toEqual(200);
   });
 
-  it("GET /restaurants/616005cae3c8e8dc0b1 should return invalid ID error", async () => {
+  it("GET /restaurants/616005cae3c8e8dc0b1 should return status 400 - invalid ID", async () => {
     const response = await request(app).get("/restaurants/616005cae3c8e8dc0b1");
     expect(response.body).toEqual({
       error: "invalid id provided",
@@ -65,7 +65,7 @@ describe("app", () => {
 
     expect(response.status).toEqual(400);
   });
-  it("GET /restaurants/616005cae3c8e880c13dc0b1 should return ID not found error", async () => {
+  it("GET /restaurants/616005cae3c8e880c13dc0b1 should return status 404 - ID not found", async () => {
     const response = await request(app).get(
       "/restaurants/616005cae3c8e880c13dc0b1"
     );
@@ -75,7 +75,7 @@ describe("app", () => {
 
     expect(response.status).toEqual(404);
   });
-  test("POST /reservations creates a new reservation", async () => {
+  test("POST /reservations returns 201 and creates a new reservation", async () => {
     const expectedStatus = 201;
     const body = {
       partySize: 5,
@@ -129,12 +129,12 @@ describe("app", () => {
 
     await request(app).post("/reservations").send(body).expect(expectedStatus);
   });
-  it("GET /reservations should return all users reservations", async () => {
+  it("GET /reservations should return status 200 and all users reservations", async () => {
     const response = await request(app).get("/reservations");
     expect(response.body).toEqual(reservations);
     expect(response.status).toEqual(200);
   });
-  it("GET /reservations/507f1f77bcf86cd799439011 should return single reservation", async () => {
+  it("GET /reservations/507f1f77bcf86cd799439011 should return status 200 and single reservation", async () => {
     const response = await request(app).get(
       "/reservations/507f1f77bcf86cd799439011"
     );
@@ -143,7 +143,7 @@ describe("app", () => {
     expect(response.status).toEqual(200);
   });
 
-  it("GET /reservations/507f1f77bcf86cd should return error - invalid ID", async () => {
+  it("GET /reservations/507f1f77bcf86cd should return status 400 - invalid ID", async () => {
     const response = await request(app).get("/reservations/507f1f77bcf86cd");
     expect(response.body).toEqual({
       error: "invalid id provided",
@@ -151,7 +151,7 @@ describe("app", () => {
 
     expect(response.status).toEqual(400);
   });
-  it("GET /reservations/507f1f77bcf86cd799439019 should return error - not found", async () => {
+  it("GET /reservations/507f1f77bcf86cd799439019 should return status 404 - Id not found", async () => {
     const response = await request(app).get(
       "/reservations/507f1f77bcf86cd799439019"
     );
@@ -161,7 +161,7 @@ describe("app", () => {
 
     expect(response.status).toEqual(404);
   });
-  it("GET /reservations/61679189b54f48aa6599a7fd should return single reservation", async () => {
+  it("GET /reservations/61679189b54f48aa6599a7fd should return status 403 - unauthorised", async () => {
     const response = await request(app).get(
       "/reservations/61679189b54f48aa6599a7fd"
     );
