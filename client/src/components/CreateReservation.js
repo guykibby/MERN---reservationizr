@@ -40,20 +40,18 @@ const CreateReservation = ({ restaurantName }) => {
     );
     if (!response.ok) {
       setIsError(true);
-      setIsLoading(false);
     } else {
-      setIsLoading(false);
       navigate("/reservations");
     }
   };
 
   if (isError) {
     return (
-      <div>
-        <p className="error restaurantItem2">
-          Error creating a reservation (Sorry)
-          <Link to="/" className="btn">
-            Return to restaurants
+      <div className="restaurantItem2">
+        <p className="error">
+          Error creating a reservation
+          <Link to="/" className="btn btn2">
+            &larr; Return to restaurants
           </Link>
         </p>
       </div>

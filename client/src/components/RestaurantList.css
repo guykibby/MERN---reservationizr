@@ -20,16 +20,6 @@
   margin: 0.3rem 0 1.2rem 0;
 }
 
-/* .restaurantlink {
-  background: #d83a38;
-  border-radius: 5px;
-  display: inline-block;
-  color: rgb(255, 255, 255);
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  text-decoration: none;
-} */
-
 @media only screen and (min-width: 40rem) {
   .restaurantList {
     max-width: 40rem;

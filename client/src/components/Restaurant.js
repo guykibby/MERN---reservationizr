@@ -1,23 +1,44 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CreateReservation from "./CreateReservation";
+import { Link } from "react-router-dom";
 import "./Restaurant.css";
 
 const Restaurant = () => {
   const { id } = useParams();
   const [restaurant, setRestaurant] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isNotFound, setIsNotFound] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       const fetchUrl = `${process.env.REACT_APP_API_URL}/restaurants/${id}`;
       const response = await fetch(fetchUrl);
+
+      if (response.ok === false) {
+        setIsNotFound(true);
+        return;
+      }
+
       const data = await response.json();
       setRestaurant(data);
       setIsLoading(false);
     };
     fetchData();
   }, [id]);
+
+  console.log(restaurant.name);
+
+  if (isNotFound) {
+    return (
+      <div className="reservationItem">
+        <p className="error">Sorry! We can't find that restaurant</p>
+        <Link to="/reservations" className="btn btn2">
+          &larr; Back to reservations
+        </Link>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return <p>Loading...</p>;

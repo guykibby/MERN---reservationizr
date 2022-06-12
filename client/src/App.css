@@ -34,3 +34,15 @@ h1 {
   border-style: none;
   width: fit-content;
 }
+
+.error {
+  font-weight: bold;
+  color: red;
+}
+
+.btn2 {
+  background: #ccc;
+  color: #000;
+  margin: 0.3rem 0;
+  font-weight: normal;
+}
