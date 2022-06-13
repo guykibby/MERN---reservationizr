@@ -27,8 +27,6 @@ const Restaurant = () => {
     fetchData();
   }, [id]);
 
-  console.log(restaurant.name);
-
   if (isNotFound) {
     return (
       <div className="reservationItem">
