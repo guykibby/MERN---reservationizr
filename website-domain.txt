@@ -1,4 +1,4 @@
 Add your deployed website domain's / URL's below
 
-React application URL / domain:
-API URL / domain:
+React application URL / domain: https://tubular-sherbet-8d7ce0.netlify.app/
+API URL / domain: https://reservationizr-guykibby.herokuapp.com
